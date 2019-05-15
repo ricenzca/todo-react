@@ -1,0 +1,25 @@
+#root {
+	margin: 5%;
+}
+
+.normal {
+	background: white;
+	border: 1px solid black;
+}
+
+.valid {
+	border: 2px solid blue;
+}
+
+.invalid {
+	border: 2px solid red;
+}
+
+.error-message {
+	color: red;
+	font-weight: bold;
+}
+
+button {
+	font-size: 12px !important;
+}
