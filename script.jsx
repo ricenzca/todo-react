@@ -1,3 +1,4 @@
+
 class List extends React.Component {
   constructor(props){
     super(props)
@@ -13,7 +14,7 @@ class List extends React.Component {
   }
 
   validateEntry (entry) {
-    const regEx = /^[a-z0-9_-]{5,30}$/;
+    const regEx = /^[a-zA-Z0-9 ]{5,30}$/;
     return regEx.test(entry);
   }
 
@@ -93,34 +94,25 @@ class List extends React.Component {
     }
   }
 
-  handleRemove = (e) => {
-    console.log("remove");
-    let itemToRemove = e.target.previousSibling.innerHTML;
-    let newList = this.state.list;
-
-    for (let i=0; i<newList.length; i++) {
-      if (newList[i] === itemToRemove) {
-        newList.splice(i,1);
-        this.setState(
-          {list: newList}
-        )
-      }
-    }
+  handleRemove = (index) => {
+    const newList = this.state.list;
+    newList.splice(index,1);
+    this.setState({list:newList});
   }
 
   render() {
       // render the list with a map() here
-      console.log('this.state.list',this.state.list);
+  //    console.log('this.state.list',this.state.list);
       let toDoList = this.state.list.map((item,index) => {
         return (
           <tr key={"row"+item+index} className="d-flex">
             <td className="col-9" key={"data-col1"+item+index}>{item}</td>
-            <td className="col-3" key={"data-col2"+item+index}><button className="btn btn-danger" key={"button"+item+index} onClick={this.handleRemove}>Remove</button></td>
+            <td className="col-3" key={"data-col2"+item+index}><button className="btn btn-danger" key={"button"+item+index} onClick={()=>this.handleRemove(index)}>Remove</button></td>
           </tr>
         );
       })
-      console.log(toDoList);
-      console.log("rendering");
+    //  console.log(toDoList);
+   //   console.log("rendering");
 
       return (
         <React.Fragment>
